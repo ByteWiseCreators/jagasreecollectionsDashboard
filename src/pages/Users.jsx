@@ -4,7 +4,6 @@ import { DashboardContext } from "../context/DashboardContext";
 
 const Users = () => {
   const { users } = useContext(DashboardContext);
-  console.log(users);
 
   return (
     <section className="overflow-x-hidden py-5">

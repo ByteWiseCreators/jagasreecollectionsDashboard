@@ -1,17 +1,19 @@
 /* eslint-disable no-unused-vars */
-import { createContext, useCallback, useEffect, useState } from "react";
+import { createContext, useCallback, useEffect, useId, useState } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 
 import { useNavigate } from "react-router-dom";
 import useNotification from "../hooks/useNotifications";
 
+const resourceURL = "https://api-g4fh4sabra-uc.a.run.app";
 export const DashboardContext = createContext();
 
 const DashboardProvider = ({ children }) => {
+  const uid = useId("jagasreecollections");
   const [userLoged, setUserLoged] = useState(() => {
     const isLoged = localStorage.getItem("user");
-    return isLoged === "true";
+    return isLoged === uid;
   });
 
   const [products, setProducts] = useState([]);
@@ -47,14 +49,15 @@ const DashboardProvider = ({ children }) => {
 
   useEffect(() => {
     (async function () {
-      const [products, policies, aboutContent, offers, socialMedias, users] = await Promise.all([
-        fetchSomething(`/jc/products`, []),
-        fetchSomething(`/jc/policy`, ""),
-        fetchSomething(`/jc/about`, ""),
-        fetchSomething(`/jc/offers`, []),
-        fetchSomething(`/jc/socials`, {}),
-        fetchSomething(`/jc/users`, []),
-      ]);
+      const [products, policies, aboutContent, offers, socialMedias, users] =
+        await Promise.all([
+          fetchSomething(`${resourceURL}/api/jc/products`, []),
+          fetchSomething(`${resourceURL}/api/jc/policy`, ""),
+          fetchSomething(`${resourceURL}/api/jc/about`, ""),
+          fetchSomething(`${resourceURL}/api/jc/offers`, []),
+          fetchSomething(`${resourceURL}/api/jc/socials`, {}),
+          fetchSomething(`${resourceURL}/api/jc/users`, []),
+        ]);
       setProducts(products.reverse());
       setPolicies({
         privacyPolicy: policies?.policy || "",
@@ -78,6 +81,7 @@ const DashboardProvider = ({ children }) => {
     offersImgArr,
     socials,
     notify,
+    uid,
   };
 
   return (

@@ -31,7 +31,6 @@ const SocialMedia = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Updated Fields:", updatedFields);
     const resMsg = await updateSocials(updatedFields);
     notify({ message: resMsg, type: "success" });
   };

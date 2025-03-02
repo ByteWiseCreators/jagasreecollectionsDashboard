@@ -69,6 +69,16 @@ export const ProductForm = ({ product, closePopup }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (
+      !productDetails.keywords ||
+      !productDetails.name ||
+      !productDetails.code ||
+      !productDetails.description ||
+      !productDetails.bulletPoints ||
+      !productDetails.imgs
+    )
+      return;
+      
     setIsLoading(true);
 
     if (!product) {
@@ -91,7 +101,6 @@ export const ProductForm = ({ product, closePopup }) => {
       notify({ message: resMsg, type: "success" });
       const newAllProducts = await getProducts();
       setProducts(newAllProducts);
-
     } else {
       const resMsg = await editProduct(product.id, productDetails);
       setProducts((pv) =>
@@ -138,13 +147,13 @@ export const ProductForm = ({ product, closePopup }) => {
         transition={{ type: "spring", damping: 40, stiffness: 400 }}
         className="fixed bottom-0 left-0 z-[100] overflow-x-hidden  px-10 bg-primary-50 mx-auto py-5 rounded-md shadow-lg cursor-auto w-screen h-[75vh]"
       >
-        <h2 className="text-2xl font-heading text-center text-primary-700 mb-6">
+        <h2 className="mb-6 text-2xl text-center font-heading text-primary-700">
           {product ? "Edit Product" : "Add Product"}
         </h2>
 
-        <div className="flex flex-col md:flex-row gap-5 font-body font-semibold text-text">
+        <div className="flex flex-col gap-5 font-semibold md:flex-row font-body text-text">
           {/* Files */}
-          <div className="basis-full md:basis-1/4 space-y-8">
+          <div className="space-y-8 basis-full md:basis-1/4">
             <FileInput
               text="Uplode image"
               handleFileChange={handleFileChange}
@@ -165,7 +174,8 @@ export const ProductForm = ({ product, closePopup }) => {
               onChange={(e) => handleInputChange("name", e.target.value)}
               type="text"
               placeholder="Product Name"
-              className="outline-none w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+              required
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm outline-none focus:ring-primary-500 focus:border-primary-500"
             />
 
             <Input
@@ -173,7 +183,8 @@ export const ProductForm = ({ product, closePopup }) => {
               onChange={(e) => handleInputChange("code", e.target.value)}
               type="text"
               placeholder="Product Code"
-              className="outline-none w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+              required
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm outline-none focus:ring-primary-500 focus:border-primary-500"
             />
 
             <Input
@@ -181,7 +192,8 @@ export const ProductForm = ({ product, closePopup }) => {
               onChange={(e) => handleInputChange("keywords", e.target.value)}
               type="text"
               placeholder="Search keywords   Eg: kurta, traditional kurta"
-              className="outline-none w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+              required
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm outline-none focus:ring-primary-500 focus:border-primary-500"
             />
 
             <Input
@@ -189,7 +201,8 @@ export const ProductForm = ({ product, closePopup }) => {
               onChange={(e) => handleInputChange("size", e.target.value)}
               type="text"
               placeholder="Sizes available    Eg: sx, s, lg, xl"
-              className="outline-none w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+              required
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm outline-none focus:ring-primary-500 focus:border-primary-500"
             />
 
             <div className="flex gap-2">
@@ -222,7 +235,8 @@ export const ProductForm = ({ product, closePopup }) => {
               onChange={(e) => handleInputChange("description", e.target.value)}
               placeholder="Description"
               rows="4"
-              className="outline-none w-full overflow-y-auto px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500 resize-none"
+              required
+              className="w-full px-3 py-2 overflow-y-auto border border-gray-300 rounded-lg shadow-sm outline-none resize-none focus:ring-primary-500 focus:border-primary-500"
             ></textarea>
 
             <textarea
@@ -232,7 +246,8 @@ export const ProductForm = ({ product, closePopup }) => {
               }
               placeholder="Bullet points"
               rows="4"
-              className="outline-none w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500 resize-none"
+              required
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm outline-none resize-none focus:ring-primary-500 focus:border-primary-500"
             ></textarea>
 
             <Button

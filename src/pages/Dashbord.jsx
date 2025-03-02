@@ -18,8 +18,6 @@ const Dashbord = () => {
       filteredCatogory.filter((product) => product.type === type).length;
   };
 
-  console.log();
-
   return (
     <section className="overflow-x-hidden py-5 space-y-10">
       <div>

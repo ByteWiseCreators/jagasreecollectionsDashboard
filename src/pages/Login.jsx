@@ -3,7 +3,7 @@ import Button from "../components/Button";
 import welcomeImg from "../assets/welcome.svg";
 import { BeatLoader } from "react-spinners";
 
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { delay } from "../Utils";
 
 import { FaRegUser } from "react-icons/fa6";
@@ -15,7 +15,7 @@ const Login = () => {
   const EMAIL = "jagasreecollections@gmail.com";
   const PASSWORD = "kesowsree2407";
 
-  const { setUserLoged } = useContext(DashboardContext);
+  const { setUserLoged, uid, userLoged } = useContext(DashboardContext);
   const navigate = useNavigate();
   const [loding, setLoding] = useState(false);
   const [values, setValues] = useState({
@@ -32,7 +32,7 @@ const Login = () => {
     if (values.email && values.password) {
       if (values.email === EMAIL && values.password === PASSWORD) {
         setUserLoged(true);
-        localStorage.setItem("user", true);
+        localStorage.setItem("user", uid);
         await delay(1500);
         navigate("/", { replace: true });
         setLoding(false);
@@ -48,6 +48,11 @@ const Login = () => {
       setError("");
     }, 2500);
   };
+
+    useEffect(() => {
+      if (userLoged) navigate("/");
+    }, [navigate, userLoged]);
+  
 
   return (
     <section className="overflow-x-hidden">
