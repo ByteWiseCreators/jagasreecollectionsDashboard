@@ -6,7 +6,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import useNotification from "../hooks/useNotifications";
 
-const resourceURL = "https://api-g4fh4sabra-uc.a.run.app";
+const resourceURL = "https://appsail-50025335106.development.catalystappsail.in";
 export const DashboardContext = createContext();
 
 const DashboardProvider = ({ children }) => {
