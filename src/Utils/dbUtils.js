@@ -1,5 +1,5 @@
 import axios from "axios";
-const resourceURL = "https://appsail-50025335106.development.catalystappsail.in";
+const resourceURL = "https://appsail-50025374240.development.catalystappsail.in";
 
 // Products
 

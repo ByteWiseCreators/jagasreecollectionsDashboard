@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import { motion } from "framer-motion";
 import PropTypes from "prop-types";
 import { useContext, useRef, useState } from "react";
@@ -16,7 +17,8 @@ import {
 } from "../Utils/dbUtils";
 import { DashboardContext } from "../context/DashboardContext";
 import { BeatLoader } from "react-spinners";
-import classNames from "classnames";
+
+import check from "../assets/check.svg";
 
 export const ProductForm = ({ product, closePopup }) => {
   const { notify, setProducts } = useContext(DashboardContext);
@@ -32,6 +34,7 @@ export const ProductForm = ({ product, closePopup }) => {
     type: product?.type || "Ethnic",
     size: product?.size || "",
     imgs: product?.imgs || [],
+    isOutOfStock: product?.isOutOfStock || false,
   });
   const formRef = useRef(null);
   const categories = ["Mens", "Womens", "Kids"];
@@ -78,7 +81,7 @@ export const ProductForm = ({ product, closePopup }) => {
       !productDetails.imgs
     )
       return;
-      
+
     setIsLoading(true);
 
     if (!product) {
@@ -123,7 +126,6 @@ export const ProductForm = ({ product, closePopup }) => {
       size: "",
       imgs: [],
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   };
 
   const {
@@ -135,7 +137,10 @@ export const ProductForm = ({ product, closePopup }) => {
     keywords,
     bulletPoints,
     size,
+    isOutOfStock
   } = productDetails;
+
+  console.log(product)
 
   return (
     <>
@@ -225,6 +230,28 @@ export const ProductForm = ({ product, closePopup }) => {
                 className="px-3 py-1"
               />
             </div>
+
+            <label
+              onClick={() =>
+                setProductDetails((prev) => ({
+                  ...prev,
+                  isOutOfStock: !prev.isOutOfStock,
+                }))
+              }
+              className="inline-flex items-center gap-2.5 text-2xl w-fit font-heading text-text cursor-pointer"
+            >
+              <span
+                className={classNames(
+                  "border-2 border-gray-400 rounded-full size-4 relative",
+                  !isOutOfStock && "bg-primary-400"
+                )}
+              >
+                {!isOutOfStock ? (
+                  <img src={check} alt="check" className="absolute inset-0 left-0.5 scale-[1.6]" />
+                ) : null}
+              </span>
+              <span>Out of stock</span>
+            </label>
           </div>
 
           <hr className="h-auto border-[0.1px] border-gray-300" />
