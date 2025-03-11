@@ -35,7 +35,7 @@ export const ProductForm = ({ product, closePopup }) => {
   });
   const formRef = useRef(null);
   const categories = ["Mens", "Womens", "Kids"];
-  const types = ["Ethnic", "Fashion"];
+  const types = ["Ethnic", "Fashion", "Festive"];
 
   const handleInputChange = (key, value) => {
     setProductDetails((prev) => ({ ...prev, [key]: value }));

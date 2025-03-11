@@ -90,6 +90,7 @@ export const uploadeOfferImg = async (data) => {
 
 export const deleteOfferImg = async (index) => {
   try {
+    console.log(index);
     const res = await axios.delete(`${resourceURL}/api/jc/offers/${index}`);
     return res.data.message;
   } catch (error) {

@@ -29,7 +29,7 @@ const OfferImageUplode = ({
       <div className="flex flex-col items-center">
         <div
           ref={imageContainerRef}
-          className="flex h-full gap-5 overflow-x-scroll w-full relative p-2"
+          className="relative flex w-full h-full gap-5 p-2 overflow-x-scroll"
         >
           <AnimatePresence>
             {fileArray.length > 0 &&
@@ -40,19 +40,19 @@ const OfferImageUplode = ({
                   animate={{ x: 0, opacity: 1 }}
                   exit={{ x: -20, opacity: 0.5 }}
                   transition={{ duration: 0.3, delay: i * 0.25 }}
-                  className="relative border shadow-md rounded shrink-0 overflow-hidden group"
+                  className="relative overflow-hidden border rounded shadow-md shrink-0 group"
                 >
                   <img
                     src={
                       image instanceof File ? URL.createObjectURL(image) : image
                     }
                     alt={`img ${i + 1}`}
-                    className="max-h-48 md:max-h-56 object-cover transition-all duration-500 hover:scale-105"
+                    className="object-cover transition-all duration-500 max-h-48 md:max-h-56 hover:scale-105"
                   />
                   <GoTrash
                     type="button"
                     onClick={() => handleRemoveImage(i)}
-                    className="absolute hidden top-0 right-0 p-2 text-red-500 bg-gradient-to-tr from-white/90 to-white/50 cursor-pointer size-12 group-hover:block hover:scale-105 animate-opacity"
+                    className="absolute top-0 right-0 hidden p-2 text-red-500 cursor-pointer bg-gradient-to-tr from-white/90 to-white/50 size-12 group-hover:block hover:scale-105 animate-opacity"
                   />
                 </motion.div>
               ))}
@@ -62,13 +62,13 @@ const OfferImageUplode = ({
           <div className="flex gap-2 mt-2">
             <button
               onClick={scrollLeft}
-              className="p-2 bg-primary-200 rounded hover:bg-primary-300"
+              className="p-2 rounded bg-primary-200 hover:bg-primary-300"
             >
               <FaAngleLeft className="size-5" />
             </button>
             <button
               onClick={scrollRight}
-              className="p-2 bg-primary-200 rounded hover:bg-primary-300"
+              className="p-2 rounded bg-primary-200 hover:bg-primary-300"
             >
               <FaAngleRight className="size-5" />
             </button>
@@ -92,7 +92,7 @@ const OfferImageUplode = ({
               }}
               className="relative group"
             >
-              <RiImageAddLine className="size-10 text-gray-600" />
+              <RiImageAddLine className="text-gray-600 size-10" />
               <span className="absolute hidden -top-6 left-10 bg-text/70 text-neutral-50 text-sm z-10 min-w-[145px] py-2 text-center rounded-md animate-opacity group-hover:block">
                 Add offer banners
               </span>

@@ -1,10 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 
 import { RiArrowDropDownLine } from "react-icons/ri";
+import useClickOutside from "../hooks/useClickOutside";
 
 const DropDown = ({
   dropdownValues = [],
@@ -15,6 +16,12 @@ const DropDown = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const dropdownRef = useRef(null);
+
+  useClickOutside({
+    ref: dropdownRef,
+    handler: () => setIsOpen(false),
+  });
 
   const handleSelect = (index) => {
     setSelectedIndex(index);
@@ -55,6 +62,7 @@ const DropDown = ({
       )}
     >
       <div
+        ref={dropdownRef}
         onClick={() => setIsOpen((pv) => !pv)}
         onKeyDown={handleKeyDown}
         tabIndex={0}
@@ -76,7 +84,7 @@ const DropDown = ({
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="flex flex-col absolute w-full bg-primary-200 rounded-b-md z-10"
+            className="absolute z-10 flex flex-col w-full bg-primary-200 rounded-b-md"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 5 }}

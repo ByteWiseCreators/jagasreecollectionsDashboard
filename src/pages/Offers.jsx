@@ -10,7 +10,7 @@ const Offers = () => {
 
   useEffect(() => {
     setOfferImages([...offersImgArr]);
-  }, []);
+  }, [offersImgArr]);
 
   const handleFileChange = async (file) => {
     const fileArray = Array.from(file);
@@ -31,11 +31,11 @@ const Offers = () => {
   };
 
   return (
-    <section className="overflow-x-hidden py-5">
-      <h2 className="font-heading text-3xl font-semibold text-text mb-6">
+    <section className="py-5 overflow-x-hidden">
+      <h2 className="mb-6 text-3xl font-semibold font-heading text-text">
         Manage Offer popups
       </h2>
-      <div className="flex gap-5 flex-wrap">
+      <div className="flex flex-wrap gap-5">
         <OfferImageUplode
           fileArray={offerImages}
           handleFileChange={handleFileChange}

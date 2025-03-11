@@ -10,11 +10,7 @@ const resourceURL = "https://appsail-50025335106.development.catalystappsail.in"
 export const DashboardContext = createContext();
 
 const DashboardProvider = ({ children }) => {
-  const uid = useId("jagasreecollections");
-  const [userLoged, setUserLoged] = useState(() => {
-    const isLoged = localStorage.getItem("user");
-    return isLoged === uid;
-  });
+  const [userLoged, setUserLoged] = useState(false);
 
   const [products, setProducts] = useState([]);
   const [users, setUsers] = useState([]);
@@ -81,7 +77,6 @@ const DashboardProvider = ({ children }) => {
     offersImgArr,
     socials,
     notify,
-    uid,
   };
 
   return (

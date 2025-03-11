@@ -15,7 +15,7 @@ const Login = () => {
   const EMAIL = "jagasreecollections@gmail.com";
   const PASSWORD = "kesowsree2407";
 
-  const { setUserLoged, uid, userLoged } = useContext(DashboardContext);
+  const { setUserLoged, userLoged } = useContext(DashboardContext);
   const navigate = useNavigate();
   const [loding, setLoding] = useState(false);
   const [values, setValues] = useState({
@@ -32,7 +32,6 @@ const Login = () => {
     if (values.email && values.password) {
       if (values.email === EMAIL && values.password === PASSWORD) {
         setUserLoged(true);
-        localStorage.setItem("user", uid);
         await delay(1500);
         navigate("/", { replace: true });
         setLoding(false);
