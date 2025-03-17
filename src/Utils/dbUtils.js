@@ -1,5 +1,5 @@
-import axios from "axios";
-const resourceURL = "https://appsail-50025374240.development.catalystappsail.in";
+import axios from "axios"
+import { resourceURL } from "../constants.js"
 
 // Products
 
@@ -90,7 +90,6 @@ export const uploadeOfferImg = async (data) => {
 
 export const deleteOfferImg = async (index) => {
   try {
-    console.log(index);
     const res = await axios.delete(`${resourceURL}/api/jc/offers/${index}`);
     return res.data.message;
   } catch (error) {

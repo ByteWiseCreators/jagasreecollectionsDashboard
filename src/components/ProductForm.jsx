@@ -71,6 +71,7 @@ export const ProductForm = ({ product, closePopup }) => {
   };
 
   const handleSubmit = async (e) => {
+    console.log(productDetails);
     e.preventDefault();
     if (
       !productDetails.keywords ||
@@ -94,6 +95,7 @@ export const ProductForm = ({ product, closePopup }) => {
       formData.append("category", productDetails.category);
       formData.append("type", productDetails.type);
       formData.append("size", productDetails.size);
+      formData.append("isOutOfStock", productDetails.isOutOfStock);
       if (productDetails.imgs && Array.isArray(productDetails.imgs)) {
         productDetails.imgs.forEach((img) => {
           formData.append("imgs", img);
@@ -139,8 +141,6 @@ export const ProductForm = ({ product, closePopup }) => {
     size,
     isOutOfStock
   } = productDetails;
-
-  console.log(product)
 
   return (
     <>
@@ -243,10 +243,10 @@ export const ProductForm = ({ product, closePopup }) => {
               <span
                 className={classNames(
                   "border-2 border-gray-400 rounded-full size-4 relative",
-                  !isOutOfStock && "bg-primary-400"
+                  isOutOfStock && "bg-primary-400"
                 )}
               >
-                {!isOutOfStock ? (
+                {isOutOfStock ? (
                   <img src={check} alt="check" className="absolute inset-0 left-0.5 scale-[1.6]" />
                 ) : null}
               </span>
