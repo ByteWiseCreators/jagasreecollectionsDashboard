@@ -10,6 +10,7 @@ import { DashboardContext } from "../context/DashboardContext";
 const PolicyForm = ({ title, submitEndpoint }) => {
   const { notify } = useContext(DashboardContext);
   const [file, setFile] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleFileChange = async (files) => {
     setFile(Array.from(files));
@@ -22,10 +23,12 @@ const PolicyForm = ({ title, submitEndpoint }) => {
     }
 
     e.preventDefault();
+    setIsLoading(true);
     const formData = new FormData();
     formData.append("md", file[0]);
     const res = await uploadMds(submitEndpoint, formData);
     notify({ message: res, type: "success" });
+    setIsLoading(false);
   };
   return (
     <motion.div
@@ -48,8 +51,9 @@ const PolicyForm = ({ title, submitEndpoint }) => {
           onClick={handleSubmit}
           type="submit"
           className="theam-grad-1 mt-4"
+          disabled={isLoading}
         >
-          Submit
+          {isLoading ? "Uploading..." : "Upload"}
         </Button>
       </form>
     </motion.div>
