@@ -27,7 +27,8 @@ const Login = () => {
   const handleChange = (e) =>
     setValues((pv) => ({ ...pv, [e.target.name]: e.target.value }));
 
-  const login = async () => {
+  const login = async (e) => {
+    e.preventDefault();
     setLoding(true);
     if (values.email && values.password) {
       if (values.email === EMAIL && values.password === PASSWORD) {
@@ -76,7 +77,7 @@ const Login = () => {
                 </p>
               )}
             </div>
-            <div className="w-full space-y-3 px-5">
+            <form className="w-full space-y-3 px-5">
               <Input
                 name="email"
                 value={values.email}
@@ -92,14 +93,14 @@ const Login = () => {
                 icon={<IoKeyOutline className="text-gray-800" />}
                 placeholder="Enter password"
               />
-              <Button onClick={login} className="theam-grad-1">
+              <Button type="submit" onClick={login} className="theam-grad-1">
                 {loding ? (
                   <BeatLoader color="#fff" />
                 ) : (
                   <span className="font-heading">Login</span>
                 )}
               </Button>
-            </div>
+            </form>
           </div>
         </div>
       </div>
