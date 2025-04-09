@@ -33,8 +33,8 @@ const Login = () => {
     if (values.email && values.password) {
       if (values.email === EMAIL && values.password === PASSWORD) {
         setUserLoged(true);
-        const expires = new Date(Date.now() + 30 * 60 * 1000);
-        document.cookie = `current_theam=true; expires=${expires} path=/`;
+        const expires = new Date(Date.now() + 30 * 60 * 1000).toUTCString();
+        document.cookie = `current_theam=true; expires=${expires}; path=/`;
         console.log(document.cookie);
         await delay(1500);
         navigate("/", { replace: true });
@@ -52,10 +52,9 @@ const Login = () => {
     }, 2500);
   };
 
-    useEffect(() => {
-      if (userLoged) navigate("/");
-    }, [navigate, userLoged]);
-  
+  useEffect(() => {
+    if (userLoged) navigate("/");
+  }, [navigate, userLoged]);
 
   return (
     <section className="overflow-x-hidden">

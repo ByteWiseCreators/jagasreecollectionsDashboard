@@ -72,9 +72,7 @@ const DropDown = ({
         )}
       >
         <span>
-          {dropdownValues[selectedIndex] === "Ethnic"
-            ? "Ethinic"
-            : dropdownValues[selectedIndex]}
+          {dropdownValues[selectedIndex]}
         </span>
         <RiArrowDropDownLine
           size={20}
@@ -110,7 +108,7 @@ const DropDown = ({
                   selectedIndex === i && "bg-primary-300"
                 )}
               >
-                {value === "Ethnic" ? "Ethinic" : value}
+                {value}
               </motion.span>
             ))}
           </motion.div>
