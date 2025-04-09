@@ -7,11 +7,14 @@ import { useNavigate } from "react-router-dom";
 import useNotification from "../hooks/useNotifications";
 
 import { resourceURL } from "../constants.js";
+import { getCookie } from "../Utils/index.js";
 
 export const DashboardContext = createContext();
 
 const DashboardProvider = ({ children }) => {
-  const [userLoged, setUserLoged] = useState(false);
+  const [userLoged, setUserLoged] = useState(() => {
+    return getCookie("current_theam");
+  });
 
   const [products, setProducts] = useState([]);
   const [users, setUsers] = useState([]);

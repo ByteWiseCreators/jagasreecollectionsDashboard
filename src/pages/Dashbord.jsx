@@ -19,9 +19,9 @@ const Dashbord = () => {
   };
 
   return (
-    <section className="overflow-x-hidden py-5 space-y-10">
+    <section className="py-5 space-y-10 overflow-x-hidden">
       <div>
-        <h2 className="font-heading text-3xl font-semibold text-text mb-6">
+        <h2 className="mb-6 text-3xl font-semibold font-heading text-text">
           Items Currently in Live
         </h2>
         <div className="flex flex-wrap gap-5">
@@ -31,6 +31,7 @@ const Dashbord = () => {
             count={{
               ethnic: filterProductAndCount("Mens")("Ethnic"),
               fashon: filterProductAndCount("Mens")("Fashion"),
+              festive: filterProductAndCount("Mens")("Festive"),
             }}
           />
           <DetialsCard
@@ -39,6 +40,7 @@ const Dashbord = () => {
             count={{
               ethnic: filterProductAndCount("Womens")("Ethnic"),
               fashon: filterProductAndCount("Womens")("Fashion"),
+              festive: filterProductAndCount("Womens")("Festive"),
             }}
           />
           <DetialsCard
@@ -47,6 +49,7 @@ const Dashbord = () => {
             count={{
               ethnic: filterProductAndCount("Kids")("Ethnic"),
               fashon: filterProductAndCount("Kids")("Fashion"),
+              festive: filterProductAndCount("Kids")("Festive"),
             }}
           />
         </div>

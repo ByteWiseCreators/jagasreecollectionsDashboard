@@ -33,6 +33,9 @@ const Login = () => {
     if (values.email && values.password) {
       if (values.email === EMAIL && values.password === PASSWORD) {
         setUserLoged(true);
+        const expires = new Date(Date.now() + 30 * 60 * 1000);
+        document.cookie = `current_theam=true; expires=${expires} path=/`;
+        console.log(document.cookie);
         await delay(1500);
         navigate("/", { replace: true });
         setLoding(false);
@@ -58,26 +61,26 @@ const Login = () => {
     <section className="overflow-x-hidden">
       <div className="container mx-auto">
         <div className="flex items-center justify-center w-full h-screen">
-          <div className="login border border-gray-200 relative bg-white/55 shadow-md px-5 pb-10 pt-5 md:w-1/3 rounded-lg flex flex-col gap-y-5">
+          <div className="relative flex flex-col px-5 pt-5 pb-10 border border-gray-200 rounded-lg shadow-md login bg-white/55 md:w-1/3 gap-y-5">
             <div className="flex flex-col items-center">
               <img
-                className="size-40 object-contain"
+                className="object-contain size-40"
                 src={welcomeImg}
                 alt="Welcome"
               />
-              <h2 className="font-heading text-text font-medium text-xl">
+              <h2 className="text-xl font-medium font-heading text-text">
                 Login as Admin
               </h2>
-              <h6 className="text-sm font-body text-neutral-500 font-medium">
+              <h6 className="text-sm font-medium font-body text-neutral-500">
                 Enter authorised Email and password to continue
               </h6>
               {error && (
-                <p className="text-base font-body text-red-500 font-semibold mt-2">
+                <p className="mt-2 text-base font-semibold text-red-500 font-body">
                   {error}
                 </p>
               )}
             </div>
-            <form className="w-full space-y-3 px-5">
+            <form className="w-full px-5 space-y-3">
               <Input
                 name="email"
                 value={values.email}

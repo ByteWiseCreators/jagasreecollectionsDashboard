@@ -71,7 +71,11 @@ const DropDown = ({
           className
         )}
       >
-        <span>{dropdownValues[selectedIndex]}</span>
+        <span>
+          {dropdownValues[selectedIndex] === "Ethnic"
+            ? "Ethinic"
+            : dropdownValues[selectedIndex]}
+        </span>
         <RiArrowDropDownLine
           size={20}
           className={classNames(
@@ -106,7 +110,7 @@ const DropDown = ({
                   selectedIndex === i && "bg-primary-300"
                 )}
               >
-                {value}
+                {value === "Ethnic" ? "Ethinic" : value}
               </motion.span>
             ))}
           </motion.div>
