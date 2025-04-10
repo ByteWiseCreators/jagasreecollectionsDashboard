@@ -35,7 +35,6 @@ const Login = () => {
         setUserLoged(true);
         const expires = new Date(Date.now() + 30 * 60 * 1000).toUTCString();
         document.cookie = `current_theam=true; expires=${expires}; path=/`;
-        console.log(document.cookie);
         await delay(1500);
         navigate("/", { replace: true });
         setLoding(false);

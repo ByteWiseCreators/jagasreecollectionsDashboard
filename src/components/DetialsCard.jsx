@@ -16,7 +16,7 @@ const DetialsCard = ({ title, count, src }) => {
           <ul className="py-2 space-y-1 text-base font-semibold font-body text-neutral-500">
             <li>Ethnic : {count.ethnic}</li>
             <li>Fashion : {count.fashon}</li>
-            <li>Festive : {count.festive}</li>
+            <li>Premium : {count.premium}</li>
           </ul>
         </div>
       </div>

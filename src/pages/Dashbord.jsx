@@ -31,7 +31,7 @@ const Dashbord = () => {
             count={{
               ethnic: filterProductAndCount("Mens")("Ethnic"),
               fashon: filterProductAndCount("Mens")("Fashion"),
-              festive: filterProductAndCount("Mens")("Festive"),
+              premium: filterProductAndCount("Mens")("Premium"),
             }}
           />
           <DetialsCard
@@ -40,7 +40,7 @@ const Dashbord = () => {
             count={{
               ethnic: filterProductAndCount("Womens")("Ethnic"),
               fashon: filterProductAndCount("Womens")("Fashion"),
-              festive: filterProductAndCount("Womens")("Festive"),
+              premium: filterProductAndCount("Womens")("Premium"),
             }}
           />
           <DetialsCard
@@ -49,7 +49,7 @@ const Dashbord = () => {
             count={{
               ethnic: filterProductAndCount("Kids")("Ethnic"),
               fashon: filterProductAndCount("Kids")("Fashion"),
-              festive: filterProductAndCount("Kids")("Festive"),
+              premium: filterProductAndCount("Kids")("Premium"),
             }}
           />
         </div>

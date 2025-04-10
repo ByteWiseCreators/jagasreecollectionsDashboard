@@ -38,7 +38,7 @@ export const ProductForm = ({ product, closePopup }) => {
   });
   const formRef = useRef(null);
   const categories = ["Mens", "Womens", "Kids"];
-  const types = ["Ethnic", "Fashion", "Festive"];
+  const types = ["Ethnic", "Fashion", "Premium"];
 
   const handleInputChange = (key, value) => {
     setProductDetails((prev) => ({ ...prev, [key]: value }));
@@ -71,7 +71,6 @@ export const ProductForm = ({ product, closePopup }) => {
   };
 
   const handleSubmit = async (e) => {
-    console.log(productDetails);
     e.preventDefault();
     if (
       !productDetails.keywords ||

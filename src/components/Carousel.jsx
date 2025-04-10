@@ -66,7 +66,7 @@ const Carousel = ({
 
   const createImageElement = (src) => {
     const img = document.createElement("img");
-    img.className = "shrink-0 snap-start h-auto w-full object-cover";
+    img.className = "object-cover w-full h-auto shrink-0 snap-start";
     img.src = src;
     img.loading = "lazy";
     img.alt = "Carosel Image";
@@ -113,13 +113,13 @@ const Carousel = ({
               key={i}
               src={img}
               loading="lazy"
-              className="shrink-0 snap-start h-auto w-full object-cover"
+              className="object-cover w-full h-auto shrink-0 snap-start"
               alt="Carosel Image"
             />
           ))}
         </div>
         {!notShowNavigation && (
-          <div className="flex gap-2 absolute bottom-2 left-1/2 transform -translate-x-1/2">
+          <div className="absolute flex gap-2 transform -translate-x-1/2 bottom-2 left-1/2">
             {images.map((_, i) => (
               <div
                 key={i}
@@ -142,11 +142,11 @@ const Carousel = ({
           <>
             <div
               onClick={scroleForward}
-              className="absolute w-1/2 h-full top-0 right-0 cursor-pointer"
+              className="absolute top-0 right-0 w-1/2 h-full cursor-pointer"
             />
             <div
               onClick={scroleBackword}
-              className="absolute w-1/2 h-full top-0 left-0 cursor-pointer"
+              className="absolute top-0 left-0 w-1/2 h-full cursor-pointer"
             />
           </>
         )}
@@ -158,7 +158,7 @@ const Carousel = ({
                   onClick={scroleForward}
                   role="button"
                   style={{ backgroundColor: buttonColor }}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 rounded-md px-0 py-1"
+                  className="absolute px-0 py-1 transform -translate-y-1/2 rounded-md right-3 top-1/2"
                 >
                   <ChevronRight color={buttonArrowColor} size={buttonSize} />
                 </button>
@@ -166,7 +166,7 @@ const Carousel = ({
                   onClick={scroleBackword}
                   role="button"
                   style={{ backgroundColor: buttonColor }}
-                  className="absolute left-3 top-1/2 transform -translate-y-1/2 rounded-md px-0 py-1"
+                  className="absolute px-0 py-1 transform -translate-y-1/2 rounded-md left-3 top-1/2"
                 >
                   <ChevronLeft color={buttonArrowColor} size={buttonSize} />
                 </button>
@@ -232,7 +232,7 @@ ChevronRight.propTypes = {
 };
 
 Carousel.propTypes = {
-  images: PropTypes.arrayOf(PropTypes.string),
+  images: PropTypes.arrayOf(PropTypes.any),
   className: PropTypes.string,
   autoSlide: PropTypes.bool,
   duration: PropTypes.number,
